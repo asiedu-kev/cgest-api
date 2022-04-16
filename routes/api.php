@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Api\auth\AuthController;
+use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\V1\EstimateController;
 
 use App\Models\Project;
 
@@ -24,7 +25,7 @@ Route::prefix('auth')->group(function () {
     Route::post("/register", [AuthController::class, 'register'])->name('api.register');
 });
 
-Route::resource('users', UserController::class);
+
 
 // Route::get('/users', [UserController::class,'index']);
 // Route::post('/users', [UserController::class, 'store']);
@@ -41,9 +42,10 @@ Route::resource('users', UserController::class);
 //     return ProjectResource::collection(Project::all());
 // });
 
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
-
-// This is for the middleware
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::apiResources([
+        'users' => UserController::class,
+        'estimates' => EstimateController::class,
+    ]);
 });

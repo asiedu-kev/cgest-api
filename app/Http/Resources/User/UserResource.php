@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -23,10 +23,9 @@ class UserCollection extends ResourceCollection
             'email' => $this->email,
             // $table->string('role');
             'role' => $this->role,
-            'password' => $this -> password,
+            // 'password' => $this -> password,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
-
     }
 }

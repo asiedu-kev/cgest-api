@@ -35,10 +35,12 @@ class AuthController extends ApiController
 
     public function register(RegisterRequest $request)
     {
-
+        $roles = ['Client', 'Collaborateur', 'Ingenieur'];
+        $index = array_rand($roles);
         $user = User::create([
-            'surname' => $request->first_name,
-            'name' => $request->last_name,
+            'surname' => $request->surname,
+            'name' => $request->name,
+            'role' => $roles[$index],
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
