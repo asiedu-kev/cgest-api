@@ -14,10 +14,11 @@ class CreateModulesTable extends Migration
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {
-            $table->id();
-            $table->string('moduleName');
+            $table->bigIncrements('id');
+            $table->string('module_name');
             $table->float('percentage');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

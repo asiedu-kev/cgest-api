@@ -15,7 +15,15 @@ class CreateEstimatesTable extends Migration
     {
         Schema::create('estimates', function (Blueprint $table) {
             $table->id();
+            $table->string('module_name', 100);
+            $table->string('client_name', 100);
+            $table->string('designation', 100)->nullable();
+            $table->integer('quantity');
+            $table->float('unit_price');
+            $table->float('amount');
+            $table->float('total');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

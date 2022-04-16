@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\auth\AuthController;
 
 use App\Models\Project;
 
@@ -18,6 +19,11 @@ use App\Models\Project;
 |
 */
 
+Route::prefix('auth')->group(function () {
+    Route::post("/login", [AuthController::class, 'login'])->name('api.login');
+    Route::post("/register", [AuthController::class, 'register'])->name('api.register');
+});
+
 Route::resource('users', UserController::class);
 
 // Route::get('/users', [UserController::class,'index']);
@@ -27,13 +33,13 @@ Route::resource('users', UserController::class);
 
 
 
-Route::get('/projects', function() {
-    return ProjectResource::collection(Project::all());
-});
+// Route::get('/projects', function () {
+//     return ProjectResource::collection(Project::all());
+// });
 
-Route::post('/projects', function(){
-    return ProjectResource::collection(Project::all());
-});
+// Route::post('/projects', function () {
+//     return ProjectResource::collection(Project::all());
+// });
 
 
 

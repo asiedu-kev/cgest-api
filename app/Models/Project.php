@@ -20,7 +20,8 @@ class Project extends Model
     ];
 
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -30,7 +31,7 @@ class Project extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function invoice(): HasMany
+    public function invoice()
     {
         return $this->hasMany(Invoice::class);
     }
@@ -40,7 +41,7 @@ class Project extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function estimate(): HasMany
+    public function estimate()
     {
         return $this->hasMany(Estimate::class);
     }
@@ -50,7 +51,7 @@ class Project extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function module(): HasMany
+    public function module()
     {
         return $this->hasMany(Module::class);
     }

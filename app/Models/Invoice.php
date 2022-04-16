@@ -9,13 +9,19 @@ class Invoice extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = [
+        'entitled',
+        'client_name',
+        'designation',
+        'amount',
+        'amount_in_letter',
+    ];
     /**
      * Get the project that owns the Invoice
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function project(): BelongsTo
+    public function project()
     {
         return $this->belongsTo(Project::class);
     }

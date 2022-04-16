@@ -19,7 +19,7 @@ class Module extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function project(): BelongsTo
+    public function project()
     {
         return $this->belongsTo(Project::class);
     }
@@ -29,7 +29,7 @@ class Module extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function stain(): HasMany
+    public function stain()
     {
         return $this->hasMany(Stain::class);
     }

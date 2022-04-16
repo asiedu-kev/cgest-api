@@ -14,8 +14,11 @@ class CreateStainsTable extends Migration
     public function up()
     {
         Schema::create('stains', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('task_name', 100);
+            $table->float('percentage')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

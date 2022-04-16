@@ -14,15 +14,16 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->string('projectName');
+            $table->bigIncrements('id');
+            $table->string('project_name');
             $table->float('location');
             $table->string('area');
             $table->string('budget');
-            $table->date('startDate');
-            $table->date('finishDate');
-            $table->string('planLink');
+            $table->date('start_date');
+            $table->date('finish_date');
+            $table->string('plan_link');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -8,15 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Stain extends Model //tache
 {
     use HasFactory;
+    protected $fillable = [
+        'task_name',
+        'percentage'
+    ];
 
     /**
      * Get the module that owns the Stain
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function module(): BelongsTo
+    public function module()
     {
         return $this->belongsTo(Module::class);
-
     }
 }
