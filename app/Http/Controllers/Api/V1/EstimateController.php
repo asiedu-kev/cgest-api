@@ -29,7 +29,7 @@ class EstimateController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EstimateStoreRequest $request, Estimate $estimate)
+    public function store(EstimateStoreRequest $request)
     {
         $estimate = Estimate::create($request->all());
 

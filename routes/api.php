@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\V1\EstimateController;
-
-use App\Models\Project;
+use App\Http\Controllers\Api\V1\ProjectController;
+use App\Http\Controllers\Api\V1\StainController;
+use App\Http\Controllers\Api\V1\ModuleController;
+use App\Http\Controllers\Api\V1\InvoiceController;;
 
 
 /*
@@ -26,26 +27,14 @@ Route::prefix('auth')->group(function () {
 });
 
 
-
-// Route::get('/users', [UserController::class,'index']);
-// Route::post('/users', [UserController::class, 'store']);
-
-// Route::post('/users', [UserController::class, 'show']);
-
-
-
-// Route::get('/projects', function () {
-//     return ProjectResource::collection(Project::all());
-// });
-
-// Route::post('/projects', function () {
-//     return ProjectResource::collection(Project::all());
-// });
-
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
     Route::apiResources([
         'users' => UserController::class,
         'estimates' => EstimateController::class,
+        'invoices' => InvoiceController::class,
+        'modules' => ModuleController::class,
+        'stains' => StainController::class,
+        'projects' => ProjectController::class,
     ]);
 });
