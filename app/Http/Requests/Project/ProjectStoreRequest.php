@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Project;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ProjectStoreRequest extends FormRequest
 {
@@ -24,7 +26,21 @@ class ProjectStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'project_name' => 'required',
+            'location' => 'required',
+            'area' => 'required',
+            'budget' => 'required',
+            'start_date' => 'required',
+            'finish_date' => 'required',
+            'plan_link' => 'required',
         ];
+    }
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Validation errors',
+            'data' => $validator->errors()
+        ]));
     }
 }

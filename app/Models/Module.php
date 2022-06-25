@@ -10,7 +10,7 @@ class Module extends Model
     use HasFactory;
 
     protected $fillable = [
-        'moduleName',
+        'module_name',
         'percentage',
     ];
 
