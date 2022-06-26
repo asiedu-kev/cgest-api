@@ -19,8 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('location');
             $table->string('area');
             $table->string('budget');
-            $table->date('start_date');
-            $table->date('finish_date');
+            $table->string('start_date');
+            $table->string('finish_date');
             $table->string('plan_link');
             $table->timestamps();
             $table->softDeletes();
