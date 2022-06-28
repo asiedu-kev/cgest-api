@@ -26,7 +26,7 @@ class EstimateStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'module_name' => 'required|min:4',
+            'project_id' => 'required',
             'client_name' => 'required|min:4',
             'designation' => 'required',
             'quantity' => 'required',

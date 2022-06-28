@@ -9,7 +9,7 @@ class Estimate extends Model //Devis
 {
     use HasFactory;
     protected $fillable = [
-        'module_name',
+        'project_id',
         'client_name',
         'designation',
         'quantity',

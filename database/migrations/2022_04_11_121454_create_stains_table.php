@@ -14,11 +14,17 @@ class CreateStainsTable extends Migration
     public function up()
     {
         Schema::create('stains', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
+            $table->unsignedBigInteger('project_id');
             $table->string('task_name', 100);
             $table->float('percentage')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('projects')
+                ->onDelete('cascade');
         });
     }
 

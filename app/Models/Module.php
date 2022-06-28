@@ -10,6 +10,7 @@ class Module extends Model
     use HasFactory;
 
     protected $fillable = [
+        'project_id',
         'module_name',
         'percentage',
     ];

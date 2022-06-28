@@ -28,7 +28,7 @@ Route::prefix('auth')->group(function () {
 
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
-
+    Route::get('/modules/project', [ModuleController::class, 'getModuleByProject']);
     Route::apiResources([
         'users' => UserController::class,
         'estimates' => EstimateController::class,

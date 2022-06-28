@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Invoice;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class InvoiceStoreRequest extends FormRequest
 {
@@ -24,7 +26,16 @@ class InvoiceStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'project_id' => 'required',
+            "module_name" => 'required'
         ];
+    }
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Validation errors',
+            'data' => $validator->errors()
+        ]));
     }
 }

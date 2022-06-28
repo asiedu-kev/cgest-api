@@ -10,6 +10,9 @@ use App\Http\Requests\Module\ModuleUpdateRequest;
 
 use App\Http\Resources\Module\ModuleResource;
 use App\Http\Resources\Module\ModuleCollection;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ModuleController extends ApiController
 {
@@ -69,5 +72,25 @@ class ModuleController extends ApiController
     {
         $module->delete();
         return response(null, 204);
+    }
+
+    public function getModuleByProject(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'project_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            throw new HttpResponseException(response()->json([
+                'success' => false,
+                'message' => 'Validation errors',
+                'data' => $validator->errors()
+            ]));
+        } else {
+            $module = Module::where(['project_id' => $request->project_id])->first();
+            if ($module == null) {
+                return response([], 200);
+            }
+            return new ModuleResource($module);
+        }
     }
 }
