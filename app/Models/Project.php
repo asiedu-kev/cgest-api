@@ -11,18 +11,20 @@ class Project extends Model
 
     protected $fillable = [
         'project_name',
+        'owner_id',
         'location',
         'area',
         'budget',
         'start_date',
         'finish_date',
-        'plan_link'
+        'plan_link',
+        'files'
     ];
 
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
 

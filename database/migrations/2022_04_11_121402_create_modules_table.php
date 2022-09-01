@@ -16,13 +16,10 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('project_id');
-
             $table->string('module_name');
-            $table->float('percentage');
+            $table->float('percentage')->default(0);
             $table->timestamps();
             $table->softDeletes();
-
-
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }

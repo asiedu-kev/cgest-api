@@ -16,12 +16,16 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('project_name');
+            $table->unsignedBigInteger('owner_id');
             $table->string('location');
             $table->string('area');
             $table->string('budget');
             $table->string('start_date');
             $table->string('finish_date');
-            $table->string('plan_link');
+            $table->string('plan_link')->nullable();
+            $table->json('files')->nullable();
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
             $table->softDeletes();
         });

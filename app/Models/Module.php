@@ -30,7 +30,7 @@ class Module extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function stain()
+    public function stains()
     {
         return $this->hasMany(Stain::class);
     }

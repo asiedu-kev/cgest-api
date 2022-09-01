@@ -13,6 +13,7 @@ use App\Http\Resources\Module\ModuleCollection;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ModuleController extends ApiController
 {
@@ -34,6 +35,7 @@ class ModuleController extends ApiController
      */
     public function store(ModuleStoreRequest $request)
     {
+        $request->merge(["percentage" => 0]);
         $module = Module::create($request->all());
         return new ModuleResource($module);
     }
@@ -74,23 +76,11 @@ class ModuleController extends ApiController
         return response(null, 204);
     }
 
-    public function getModuleByProject(Request $request)
+    public function getModuleByProject($id)
     {
-        $validator = Validator::make($request->all(), [
-            'project_id' => 'required',
-        ]);
-        if ($validator->fails()) {
-            throw new HttpResponseException(response()->json([
-                'success' => false,
-                'message' => 'Validation errors',
-                'data' => $validator->errors()
-            ]));
-        } else {
-            $module = Module::where(['project_id' => $request->project_id])->first();
-            if ($module == null) {
-                return response([], 200);
-            }
-            return new ModuleResource($module);
-        }
+        $query = Module::where(['project_id' => $id]);
+        $modules = QueryBuilder::for($query)->allowedIncludes(['stains'])->paginate();
+
+        return new ModuleCollection($modules);
     }
 }

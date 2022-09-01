@@ -10,6 +10,8 @@ use App\Http\Requests\Project\ProjectUpdateRequest;
 use App\Http\Resources\Project\ProjectResource;
 use App\Http\Resources\Project\ProjectCollection;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProjectController extends ApiController
 {
@@ -20,7 +22,9 @@ class ProjectController extends ApiController
      */
     public function index()
     {
-        return new ProjectCollection(Project::paginate());
+        $query = Project::where(['owner_id' => auth()->user()->id]);
+        $projects = QueryBuilder::for($query)->allowedIncludes(['user'])->paginate();
+        return new ProjectCollection($projects);
     }
 
     /**
@@ -31,6 +35,7 @@ class ProjectController extends ApiController
      */
     public function store(ProjectStoreRequest $request)
     {
+        $request->merge(['owner_id' => auth()->user()->id]);
         $project = Project::create($request->all());
         return new ProjectResource($project);
     }

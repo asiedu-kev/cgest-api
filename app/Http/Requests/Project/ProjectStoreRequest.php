@@ -32,7 +32,6 @@ class ProjectStoreRequest extends FormRequest
             'budget' => 'required',
             'start_date' => 'required',
             'finish_date' => 'required',
-            // 'plan_link' => 'required',
         ];
     }
     public function failedValidation(Validator $validator)

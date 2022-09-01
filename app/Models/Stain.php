@@ -10,7 +10,10 @@ class Stain extends Model //tache
     use HasFactory;
     protected $fillable = [
         'task_name',
-        'percentage'
+        'module_id',
+        'starting_date',
+        'ending_date',
+        'status'
     ];
 
     /**

@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\User;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserCollection extends ResourceCollection
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -21,8 +21,8 @@ class UserCollection extends ResourceCollection
             'surname' => $this->surname,
             'name' => $this->name,
             'email' => $this->email,
-            // $table->string('role');
             'role' => $this->role,
+            // $table->string('role');
             // 'password' => $this -> password,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

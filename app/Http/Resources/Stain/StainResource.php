@@ -17,7 +17,10 @@ class StainResource extends JsonResource
         return [
             'id' => $this->id,
             'task_name' => $this->task_name,
-            'percentage' => $this->percentage,
+            'module_id' => $this->module_id,
+            'starting_date' => $this->starting_date,
+            'ending_date' => $this->ending_date,
+            'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

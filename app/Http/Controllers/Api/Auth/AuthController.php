@@ -23,13 +23,14 @@ class AuthController extends ApiController
 
         $tokenResult = auth()->user()->createToken(Str::random(15));
 
-        return $this->respondWithToken($tokenResult);
+        return $this->respondWithToken($tokenResult, auth()->user());
     }
 
-    protected function respondWithToken($tokenResult)
+    protected function respondWithToken($tokenResult, User $user)
     {
         return response()->json([
-            'token' => $tokenResult->plainTextToken
+            'token' => $tokenResult->plainTextToken,
+            'user' => $user
         ], 200);
     }
 
@@ -47,6 +48,6 @@ class AuthController extends ApiController
 
         $tokenResult = $user->createToken(Str::random(15));
 
-        return $this->respondWithToken($tokenResult);
+        return $this->respondWithToken($tokenResult, $user);
     }
 }
