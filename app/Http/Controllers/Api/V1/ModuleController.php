@@ -35,7 +35,7 @@ class ModuleController extends ApiController
      */
     public function store(ModuleStoreRequest $request)
     {
-        $request->merge(["percentage" => 0]);
+        $request->merge(["percentage" => "0"]);
         $module = Module::create($request->all());
         return new ModuleResource($module);
     }
