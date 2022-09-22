@@ -17,7 +17,7 @@ class CreateModulesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('project_id');
             $table->string('module_name');
-            $table->float('percentage')->default(0);
+            $table->integer('percentage')->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');

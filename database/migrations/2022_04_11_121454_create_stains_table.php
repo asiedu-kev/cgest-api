@@ -19,7 +19,7 @@ class CreateStainsTable extends Migration
             $table->string('task_name', 100);
             $table->string('starting_date');
             $table->string('ending_date');
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

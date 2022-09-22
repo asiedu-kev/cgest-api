@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Resources\User\UserCollection;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Api\ApiController;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends ApiController
 {
@@ -12,7 +15,9 @@ class UserController extends ApiController
 
     public function index()
     {
-        return User::all();
+        $query = User::where('id', '!=',auth()->user()->id);
+        $users = QueryBuilder::for($query)->allowedIncludes(['user'])->paginate();
+        return new UserCollection($users);
     }
 
     public function store(Request $request)

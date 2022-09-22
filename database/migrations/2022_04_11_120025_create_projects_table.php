@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('location');
             $table->string('area');
             $table->string('budget');
+            $table->double("percentage")->default(0);
             $table->string('start_date');
             $table->string('finish_date');
             $table->string('plan_link')->nullable();

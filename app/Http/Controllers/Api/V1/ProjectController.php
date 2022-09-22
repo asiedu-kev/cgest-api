@@ -35,7 +35,7 @@ class ProjectController extends ApiController
      */
     public function store(ProjectStoreRequest $request)
     {
-        $request->merge(['owner_id' => auth()->user()->id]);
+        $request->merge(['owner_id' => auth()->user()->id, "percentage" => 0]);
         $project = Project::create($request->all());
         return new ProjectResource($project);
     }

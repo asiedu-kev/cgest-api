@@ -13,13 +13,17 @@ class Project extends Model
         'project_name',
         'owner_id',
         'location',
+        'percentage',
         'area',
         'budget',
         'start_date',
         'finish_date',
         'plan_link',
-        'files'
+        'files',
     ];
+//    protected $casts = [
+//        'members' => 'array'
+//    ];
 
 
     public function user()
