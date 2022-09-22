@@ -29,6 +29,8 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('projects/{id}/modules', [ModuleController::class, 'getModuleByProject']);
+    Route::post('projects/{id}', [ProjectController::class, 'add_member_to_project']);
+    Route::get('projects/{id}/members', [ProjectController::class, 'get_project_members']);
     Route::apiResources([
         'users' => UserController::class,
         'estimates' => EstimateController::class,
